@@ -2,7 +2,7 @@
 
 REPOSITORY=/home/ubuntu/app
 
-CURRENT_PID=$(pgrep -fla java | grep pika | awk '{print $1}')
+CURRENT_PID=$(pgrep -fla java | grep saeroksaerok | awk '{print $1}')
 
 echo "> 현재 구동 중인 애플리케이션 pid: $CURRENT_PID"
 
