@@ -1,4 +1,4 @@
-name: saeroksaerok server CI/CD
+name: saeroksaerok-server CI/CD
 
 on:
   push:
