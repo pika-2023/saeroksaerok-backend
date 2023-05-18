@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bash 
 
 if [ -d /home/ubuntu/app/ ]; then
     sudo rm -rf /home/ubuntu/app/
