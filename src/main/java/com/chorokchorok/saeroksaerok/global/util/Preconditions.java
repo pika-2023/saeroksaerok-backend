@@ -1,5 +1,6 @@
 package com.chorokchorok.saeroksaerok.global.util;
 
+import java.util.Collection;
 import java.util.regex.Pattern;
 
 import com.chorokchorok.saeroksaerok.global.error.exception.InputValidationException;
@@ -24,6 +25,12 @@ public class Preconditions {
 	public static void checkLength(int minLength, int maxLength, String value, String type) {
 		if (value.length() < minLength || value.length() > maxLength) {
 			throw new InputValidationException("length", type, minLength, maxLength);
+		}
+	}
+
+	public static <T> void checkContains(T value, Collection<T> collection) {
+		if (!collection.contains(value)) {
+			throw new InputValidationException("extension", "image");
 		}
 	}
 }
