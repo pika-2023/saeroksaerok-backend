@@ -36,7 +36,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 			Jwt unauthenticatedJwt = new Jwt(token);
 			Jwt authenticatedJwt = authenticate(unauthenticatedJwt);
 
-			log.debug("autehnticate user");
+			log.debug("authenticate user");
 			SecurityContextHolder.getContext().setAuthentication(authenticatedJwt);
 		}
 		filterChain.doFilter(request, response);

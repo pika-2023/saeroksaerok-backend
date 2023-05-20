@@ -10,9 +10,9 @@ import com.chorokchorok.saeroksaerok.core.profile.domain.Image;
 import com.chorokchorok.saeroksaerok.core.user.domain.Email;
 import com.chorokchorok.saeroksaerok.global.error.exception.BadRequestException;
 
-import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 public class ProfileAddRequest {
 
 	private Email email;
@@ -26,7 +26,7 @@ public class ProfileAddRequest {
 	}
 
 	public Image convertImage(MultipartFile profileImage) {
-		if (profileImage == null) {
+		if (profileImage == null || profileImage.isEmpty()) {
 			InputStream inputStream = getClass().getClassLoader().getResourceAsStream("defaultProfileImage.png");
 			return new Image(inputStream, "defaultProfileImage.png");
 		}

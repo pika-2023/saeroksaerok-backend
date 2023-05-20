@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.chorokchorok.saeroksaerok.core.user.dto.EmailDuplicatedCheckRequest;
 import com.chorokchorok.saeroksaerok.core.user.dto.EmailDuplicatedCheckResponse;
+import com.chorokchorok.saeroksaerok.core.user.dto.SignInRequest;
+import com.chorokchorok.saeroksaerok.core.user.dto.SignInResponse;
 import com.chorokchorok.saeroksaerok.core.user.dto.SignUpRequest;
 import com.chorokchorok.saeroksaerok.core.user.dto.SignUpResponse;
 import com.chorokchorok.saeroksaerok.core.user.service.UserService;
@@ -35,5 +37,12 @@ public class UserController {
 		@RequestBody EmailDuplicatedCheckRequest request
 	) {
 		return userService.checkEmailDuplicated(request);
+	}
+
+	@PostMapping("/signin")
+	public SignInResponse signIn(
+		@RequestBody SignInRequest request
+	) {
+		return userService.signIn(request);
 	}
 }
