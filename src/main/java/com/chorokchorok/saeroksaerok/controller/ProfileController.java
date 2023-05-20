@@ -20,7 +20,9 @@ public class ProfileController {
 	private final ProfileService profileService;
 
 	@PostMapping
-	public ResponseEntity<ProfileAddResponse> addProfile(ProfileAddRequest request) {
+	public ResponseEntity<ProfileAddResponse> addProfile(
+		ProfileAddRequest request
+	) {
 		ProfileAddResponse body = profileService.addProfile(request);
 		return ResponseEntity
 			.status(HttpStatus.CREATED)
