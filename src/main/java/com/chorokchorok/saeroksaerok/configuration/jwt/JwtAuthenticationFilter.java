@@ -45,7 +45,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 	private Jwt authenticate(Jwt jwt) {
 		Map<String, Object> claims = jwtTokenService.parseClaim((String)jwt.getPrincipal());
 		long userId = ((Integer)claims.get("userId")).longValue();
-		long profileId = ((Integer)claims.get("profileId")).longValue();
+		long profileId = ((Integer)claims.get("profile")).longValue();
 
 		SecurityUser securityUser = new SecurityUser(userId, profileId);
 		return new Jwt(securityUser);
