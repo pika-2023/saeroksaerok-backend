@@ -11,6 +11,7 @@ env:
   AWS_REGION: ap-northeast-2
   CODE_DEPLOY_APPLICATION_NAME: saeroksaerok
   CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: saeroksaerok-group
+  GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
   
 permissions:
   contents: read
