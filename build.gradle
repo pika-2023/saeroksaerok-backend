@@ -27,6 +27,7 @@ dependencies {
     implementation 'org.apache.commons:commons-lang3'
     implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
     implementation 'com.redis.testcontainers:testcontainers-redis:1.6.3'
+    implementation 'com.google.cloud:google-cloud-speech:2.4.0'
 
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.mysql:mysql-connector-j'
