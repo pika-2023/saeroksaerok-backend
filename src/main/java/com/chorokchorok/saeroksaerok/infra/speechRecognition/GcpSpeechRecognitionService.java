@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.chorokchorok.saeroksaerok.core.common.service.SpeechRecognitionService;
 import com.chorokchorok.saeroksaerok.global.error.exception.BadRequestException;
 import com.google.cloud.speech.v1.RecognitionAudio;
 import com.google.cloud.speech.v1.RecognitionConfig;
@@ -20,9 +19,9 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
-public class GcpSpeechRecognitionService implements SpeechRecognitionService {
+public class GcpSpeechRecognitionService {
 
-	@Override
+	// @Override
 	public String transcribeAudioToText(MultipartFile audio) {
 		//
 		String transcript = "";
