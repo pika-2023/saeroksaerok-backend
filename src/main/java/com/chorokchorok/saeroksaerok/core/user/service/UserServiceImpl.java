@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
 		String refreshToken = tokenService.createRefreshToken();
 
 		// save refreshToken to redis
-		saveRefreshToken(refreshToken, user.getId());
+		// saveRefreshToken(refreshToken, user.getId());
 
 		// create and return response
 		return new SignInResponse(user.getEmail(), accessToken, refreshToken);
