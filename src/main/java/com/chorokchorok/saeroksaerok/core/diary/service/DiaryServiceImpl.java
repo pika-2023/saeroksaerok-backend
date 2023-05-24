@@ -7,6 +7,8 @@ import com.chorokchorok.saeroksaerok.core.diary.domain.Diary;
 import com.chorokchorok.saeroksaerok.core.diary.domain.DiaryRepository;
 import com.chorokchorok.saeroksaerok.core.diary.dto.DiaryAddRequest;
 import com.chorokchorok.saeroksaerok.core.diary.dto.DiaryAddResponse;
+import com.chorokchorok.saeroksaerok.core.diary.dto.DiaryShareRequest;
+import com.chorokchorok.saeroksaerok.core.diary.dto.DiaryShareResponse;
 import com.chorokchorok.saeroksaerok.core.diary.dto.KeywordDrawResponse;
 import com.chorokchorok.saeroksaerok.core.profile.domain.Profile;
 import com.chorokchorok.saeroksaerok.core.profile.domain.ProfileRepository;
@@ -36,10 +38,6 @@ public class DiaryServiceImpl implements DiaryService {
 
 	@Override
 	public DiaryAddResponse addDiary(long profileId, DiaryAddRequest request) {
-		// find profile
-		Profile profile = profileRepository.findById(profileId)
-			.orElseThrow(() -> new NotFoundException("profile", profileId));
-
 		// transcribe audio to text
 		String textDiary = speechRecognitionService.transcribeAudioToText(request.getAudioDiary());
 
@@ -49,18 +47,28 @@ public class DiaryServiceImpl implements DiaryService {
 		// transcribe text to picture
 		String pictureDiary = imageTranscriptService.transcibe(prompt);
 
+		// create and return response
+		return new DiaryAddResponse(request.getKeyword(), textDiary, pictureDiary);
+	}
+
+	@Override
+	public DiaryShareResponse shareDiary(long profileId, DiaryShareRequest request) {
+		// find profile
+		Profile profile = profileRepository.findById(profileId)
+			.orElseThrow(() -> new NotFoundException("profile", profileId));
+
 		// create diary
 		Diary diary = new Diary(
 			profile,
 			request.getKeyword(),
-			pictureDiary,
-			textDiary
+			request.getPictureDiary(),
+			request.getTextDiary()
 		);
 
 		// save diary
 		Diary savedDiary = diaryRepository.save(diary);
 
-		// create and return response
-		return DiaryAddResponse.of(savedDiary);
+		// create and return diary
+		return DiaryShareResponse.of(savedDiary);
 	}
 }

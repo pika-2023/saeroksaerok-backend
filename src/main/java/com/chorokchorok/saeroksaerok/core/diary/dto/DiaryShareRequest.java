@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class DiaryAddResponse {
+public class DiaryShareRequest {
 
 	private String keyword;
 	private String textDiary;
