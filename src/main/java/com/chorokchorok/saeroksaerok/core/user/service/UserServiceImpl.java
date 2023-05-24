@@ -54,6 +54,7 @@ public class UserServiceImpl implements UserService {
 		return new EmailDuplicatedCheckResponse(exists);
 	}
 
+	@Transactional
 	@Override
 	public SignInResponse signIn(SignInRequest request) {
 		// find user

@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class DiaryShareResponse {
 
+	private long id;
 	private String author;
 	private String keyword;
 	private String textDiary;
@@ -21,6 +22,7 @@ public class DiaryShareResponse {
 
 	public static DiaryShareResponse of(Diary diary) {
 		return new DiaryShareResponse(
+			diary.getId(),
 			diary.getProfile().getNickname(),
 			diary.getKeyword(),
 			diary.getTextDiary(),
