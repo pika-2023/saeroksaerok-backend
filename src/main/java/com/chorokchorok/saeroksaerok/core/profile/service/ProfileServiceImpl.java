@@ -1,6 +1,7 @@
 package com.chorokchorok.saeroksaerok.core.profile.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.chorokchorok.saeroksaerok.core.profile.domain.Profile;
 import com.chorokchorok.saeroksaerok.core.profile.domain.ProfileRepository;
@@ -14,6 +15,7 @@ import com.chorokchorok.saeroksaerok.global.error.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 @Service
 public class ProfileServiceImpl implements ProfileService {
 
@@ -21,6 +23,7 @@ public class ProfileServiceImpl implements ProfileService {
 	private final UserRepository userRepository;
 	private final ImageUploader imageUploader;
 
+	@Transactional
 	@Override
 	public ProfileAddResponse addProfile(ProfileAddRequest request) {
 		// find user
