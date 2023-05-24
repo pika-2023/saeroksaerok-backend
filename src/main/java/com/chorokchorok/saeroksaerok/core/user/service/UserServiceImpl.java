@@ -32,6 +32,11 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	@Override
 	public SignUpResponse signUp(SignUpRequest request) {
+		// validate password
+		if (!request.getPassword().getValue().equals(request.getCheckPassword().getValue())) {
+			throw new BadRequestException("signIn-failed.password-missmatch");
+		}
+
 		// create user
 		User user = new User(
 			request.getEmail(),
