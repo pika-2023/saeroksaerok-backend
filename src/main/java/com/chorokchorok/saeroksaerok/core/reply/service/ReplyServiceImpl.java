@@ -46,7 +46,7 @@ public class ReplyServiceImpl implements ReplyService {
 			.orElseThrow(() -> new NotFoundException("profile", profileId));
 
 		// create textReply
-		TextReply textReply = new TextReply(profile, text);
+		TextReply textReply = new TextReply(profile, diary, text);
 
 		// save textReply
 		TextReply savedTextReply = textReplyRepository.save(textReply);
@@ -67,7 +67,7 @@ public class ReplyServiceImpl implements ReplyService {
 			.orElseThrow(() -> new NotFoundException("profile", profileId));
 
 		// create emojiReply
-		EmojiReply emojiReply = new EmojiReply(profile, request.getEmoji());
+		EmojiReply emojiReply = new EmojiReply(profile, diary, request.getEmoji());
 
 		// save emojiReply
 		EmojiReply savedEmojiReply = emojiReplyRepository.save(emojiReply);
