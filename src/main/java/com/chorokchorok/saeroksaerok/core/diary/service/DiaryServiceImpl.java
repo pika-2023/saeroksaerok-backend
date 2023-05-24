@@ -1,6 +1,7 @@
 package com.chorokchorok.saeroksaerok.core.diary.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.chorokchorok.saeroksaerok.core.common.service.SpeechRecognitionService;
 import com.chorokchorok.saeroksaerok.core.diary.domain.Diary;
@@ -17,6 +18,7 @@ import com.chorokchorok.saeroksaerok.global.error.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 @Service
 public class DiaryServiceImpl implements DiaryService {
 
@@ -51,6 +53,7 @@ public class DiaryServiceImpl implements DiaryService {
 		return new DiaryAddResponse(request.getKeyword(), textDiary, pictureDiary);
 	}
 
+	@Transactional
 	@Override
 	public DiaryShareResponse shareDiary(long profileId, DiaryShareRequest request) {
 		// find profile
