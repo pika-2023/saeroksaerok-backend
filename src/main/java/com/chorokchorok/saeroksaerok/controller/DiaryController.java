@@ -5,12 +5,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.chorokchorok.saeroksaerok.core.common.SecurityUser;
 import com.chorokchorok.saeroksaerok.core.diary.dto.DiaryAddRequest;
 import com.chorokchorok.saeroksaerok.core.diary.dto.DiaryAddResponse;
+import com.chorokchorok.saeroksaerok.core.diary.dto.DiaryShareRequest;
+import com.chorokchorok.saeroksaerok.core.diary.dto.DiaryShareResponse;
 import com.chorokchorok.saeroksaerok.core.diary.dto.KeywordDrawResponse;
 import com.chorokchorok.saeroksaerok.core.diary.service.DiaryService;
 
@@ -37,5 +40,13 @@ public class DiaryController {
 		return ResponseEntity
 			.status(HttpStatus.CREATED)
 			.body(body);
+	}
+
+	@PostMapping("/share")
+	public DiaryShareResponse shareDiary(
+		@AuthenticationPrincipal SecurityUser securityUser,
+		@RequestBody DiaryShareRequest request
+	) {
+		return diaryService.shareDiary(securityUser.getProfileId(), request);
 	}
 }

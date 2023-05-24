@@ -9,7 +9,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.chorokchorok.saeroksaerok.configuration.vito.VitoProperties;
 import com.chorokchorok.saeroksaerok.core.common.service.SpeechRecognitionService;
 
 import lombok.RequiredArgsConstructor;
@@ -25,10 +25,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class VitoSpeechRecognitionService implements SpeechRecognitionService {
 
-	@Value("${vito.id}")
-	private String clientId;
-	@Value("${vito.secret}")
-	private String clientSecret;
+	private final VitoProperties properties;
 
 	@Override
 	public String transcribeAudioToText(MultipartFile audio) {
@@ -135,7 +132,7 @@ public class VitoSpeechRecognitionService implements SpeechRecognitionService {
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.set("Content-Type", "application/x-www-form-urlencoded");
-		String body = "client_id=" + clientId + "&client_secret=" + clientSecret;
+		String body = "client_id=" + properties.getId() + "&client_secret=" + properties.getSecret();
 
 		HttpEntity<String> request = new HttpEntity<>(body, headers);
 		ResponseEntity<Object> response = template.postForEntity(
@@ -144,41 +141,4 @@ public class VitoSpeechRecognitionService implements SpeechRecognitionService {
 
 		return response.getBody().toString().split("=")[1].split(",")[0];
 	}
-
-	// @Override
-	// public String transcribeAudioToText(MultipartFile audio) {
-	// 	String accessToken = getAccessToken();
-	// 	RestTemplate template = new RestTemplate();
-	//
-	// 	try {
-	// 		byte[] bytes = audio.getInputStream().readAllBytes();
-	// 		ByteString content = ByteString.copyFrom(bytes);
-	//
-	// 		HttpHeaders headers = new HttpHeaders();
-	// 		// headers.set("accept", "application/json");
-	// 		headers.set("Authorization", "Bearer " + accessToken);
-	// 		// headers.set("Content-Type", "multipart/form-data");
-	//
-	// 		HashMap<Object, Object> diarization = new HashMap<>();
-	// 		diarization.put("use_verification", false);
-	//
-	// 		HashMap<Object, Object> config = new HashMap<>();
-	// 		config.put("diarization", diarization);
-	// 		config.put("use_multi_channel", false);
-	//
-	// 		HashMap<Object, Object> body = new HashMap<>();
-	// 		body.put("config", config);
-	// 		body.put("file", content);
-	//
-	// 		HttpEntity<HashMap<Object, Object>> request = new HttpEntity<>(body, headers);
-	// 		ResponseEntity<Object> response = template.postForEntity(
-	// 			"https://openapi.vito.ai/v1/transcribe", request, Object.class
-	// 		);
-	//
-	// 		return response.toString();
-	//
-	// 	} catch (IOException e) {
-	// 		throw new RuntimeException(e);
-	// 	}
-	// }
 }
