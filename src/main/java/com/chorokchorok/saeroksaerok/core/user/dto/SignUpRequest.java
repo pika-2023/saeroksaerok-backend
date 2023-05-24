@@ -14,4 +14,5 @@ public class SignUpRequest {
 
 	private Email email;
 	private Password password;
+	private Password checkPassword;
 }
