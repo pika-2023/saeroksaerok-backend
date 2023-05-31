@@ -52,7 +52,7 @@ public class DiaryServiceImpl implements DiaryService {
 
 	@Override
 	public DiaryAddResponse addDiary(long profileId, DiaryAddRequest request) {
-		// transcribe audio to text
+		// transcribe speech to text
 		String firstTextDiary = speechRecognitionService.transcribeAudioToText(request.getFirstAnswer());
 		String secondTextDiary = speechRecognitionService.transcribeAudioToText(request.getSecondAnswer());
 		String thirdTextDiary = speechRecognitionService.transcribeAudioToText(request.getThirdAnswer());
