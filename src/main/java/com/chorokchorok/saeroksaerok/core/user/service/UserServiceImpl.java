@@ -82,7 +82,7 @@ public class UserServiceImpl implements UserService {
 		saveRefreshToken(refreshToken, user.getId());
 
 		// create and return response
-		return new SignInResponse(user.getEmail(), accessToken, refreshToken);
+		return new SignInResponse(user.getEmail().getValue(), accessToken, refreshToken);
 	}
 
 	private void saveRefreshToken(String refreshTokenStr, long userId) {
