@@ -53,15 +53,21 @@ public class DiaryServiceImpl implements DiaryService {
 	@Override
 	public DiaryAddResponse addDiary(long profileId, DiaryAddRequest request) {
 		// transcribe audio to text
-		String textDiary = speechRecognitionService.transcribeAudioToText(request.getAudioDiary());
+		String firstTextDiary = speechRecognitionService.transcribeAudioToText(request.getFirstAnswer());
+		String secondTextDiary = speechRecognitionService.transcribeAudioToText(request.getSecondAnswer());
+		String thirdTextDiary = speechRecognitionService.transcribeAudioToText(request.getThirdAnswer());
 
 		// translate korean to english
-		String prompt = translationService.translate(textDiary);
+		String firstTranslation = translationService.translate(firstTextDiary);
+		String secondTranslation = translationService.translate(secondTextDiary);
+		String thirdTranslation = translationService.translate(thirdTextDiary);
 
 		// transcribe text to picture
-		String pictureDiary = imageTranscriptService.transcibe(prompt);
+		String translation = firstTranslation + secondTranslation + thirdTranslation;
+		String pictureDiary = imageTranscriptService.transcibe(translation);
 
 		// create and return response
+		String textDiary = firstTextDiary + secondTextDiary + thirdTextDiary;
 		return new DiaryAddResponse(request.getKeyword(), textDiary, pictureDiary);
 	}
 

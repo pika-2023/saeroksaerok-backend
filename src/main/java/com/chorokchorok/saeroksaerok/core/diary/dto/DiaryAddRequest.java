@@ -8,10 +8,19 @@ import lombok.Getter;
 public class DiaryAddRequest {
 
 	private String keyword;
-	private MultipartFile audioDiary;
+	private MultipartFile firstAnswer;
+	private MultipartFile secondAnswer;
+	private MultipartFile thirdAnswer;
 
-	public DiaryAddRequest(String keyword, MultipartFile audioDiary) {
+	public DiaryAddRequest(
+		String keyword,
+		MultipartFile firstAnswer,
+		MultipartFile secondAnswer,
+		MultipartFile thirdAnswer
+	) {
 		this.keyword = keyword;
-		this.audioDiary = audioDiary;
+		this.firstAnswer = firstAnswer;
+		this.secondAnswer = secondAnswer;
+		this.thirdAnswer = thirdAnswer;
 	}
 }
