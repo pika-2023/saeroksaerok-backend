@@ -23,17 +23,17 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
-public class VitoSpeechRecognitionService implements SpeechRecognitionService {
+public class VitoSpeechRecognitionService {
 
 	private final VitoProperties properties;
 
-	@Override
+	// @Override
 	public String transcribeAudioToText(MultipartFile audio) {
 		String accessToken = getAccessToken();
 		String transcribeId = getTranscribeId(audio, accessToken);
 
 		try {
-			for (int second = 0; second < 15; second++) {
+			for (int second = 0; second < 20; second++) {
 				Thread.sleep(1000);
 			}
 		} catch (InterruptedException e) {
