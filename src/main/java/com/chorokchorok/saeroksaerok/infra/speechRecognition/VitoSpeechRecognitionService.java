@@ -33,7 +33,7 @@ public class VitoSpeechRecognitionService implements SpeechRecognitionService {
 		String transcribeId = getTranscribeId(audio, accessToken);
 
 		try {
-			for (int second = 0; second < 5; second++) {
+			for (int second = 0; second < 15; second++) {
 				Thread.sleep(1000);
 			}
 		} catch (InterruptedException e) {
