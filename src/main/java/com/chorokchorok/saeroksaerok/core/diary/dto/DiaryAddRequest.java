@@ -21,13 +21,8 @@ public class DiaryAddRequest {
 		MultipartFile thirdAnswer
 	) {
 		this.keyword = keyword;
-		log.info("\n--------------------------------------------");
 		this.firstAnswer = firstAnswer;
-		log.info("파일 형식: ", firstAnswer.getOriginalFilename());
 		this.secondAnswer = secondAnswer;
-		log.info("파일 형식: ", secondAnswer.getOriginalFilename());
 		this.thirdAnswer = thirdAnswer;
-		log.info("파일 형식: ", thirdAnswer.getOriginalFilename());
-		log.info("--------------------------------------------\n");
 	}
 }
