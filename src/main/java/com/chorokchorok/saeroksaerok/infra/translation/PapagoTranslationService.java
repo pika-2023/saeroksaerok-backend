@@ -39,6 +39,6 @@ public class PapagoTranslationService implements TranslationService {
 		);
 
 		String split = response.getBody().toString().split("translatedText=")[1];
-		return split.split(", engineType=N2MT")[0];
+		return split.split(", engineType=")[0];
 	}
 }
