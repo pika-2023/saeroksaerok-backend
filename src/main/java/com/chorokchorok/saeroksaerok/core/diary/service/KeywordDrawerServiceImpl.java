@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class KeywordDrawerServiceImpl implements KeywordDrawerService {
 
-	private String[] keywords = {"설레임", "그리움"};
+	private String[] keywords = {"가족", "친구", "여행"};
 
 	@Override
 	public String keywordDraw() {
