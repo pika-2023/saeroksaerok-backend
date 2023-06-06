@@ -20,7 +20,9 @@ import com.chorokchorok.saeroksaerok.core.common.service.SpeechRecognitionServic
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class OpenAiSpeechRecognitionService implements SpeechRecognitionService {
@@ -34,6 +36,11 @@ public class OpenAiSpeechRecognitionService implements SpeechRecognitionService 
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 		headers.set("Authorization", "Bearer " + properties.getApiKey());
+
+		log.info("                 ");
+		log.info(audio.getOriginalFilename());
+		log.info(audio.getContentType());
+		log.info("                 ");
 
 		try {
 			MultiValueMap<Object, Object> body = new LinkedMultiValueMap<>();
