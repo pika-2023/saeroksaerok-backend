@@ -40,7 +40,6 @@ public class OpenAiSpeechRecognitionService implements SpeechRecognitionService 
 		log.info("                 ");
 		log.info(audio.getOriginalFilename());
 		log.info(audio.getContentType());
-		log.info("                 ");
 
 		try {
 			MultiValueMap<Object, Object> body = new LinkedMultiValueMap<>();
@@ -50,6 +49,11 @@ public class OpenAiSpeechRecognitionService implements SpeechRecognitionService 
 					return audio.getOriginalFilename();
 				}
 			};
+
+			log.info(audio.getBytes().toString());
+			log.info(fileResource.getByteArray().toString());
+			log.info(String.valueOf(fileResource));
+			log.info("                 ");
 
 			body.add("file", fileResource);
 			body.add("model", "whisper-1");
