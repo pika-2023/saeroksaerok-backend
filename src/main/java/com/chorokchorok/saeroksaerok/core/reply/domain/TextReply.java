@@ -42,9 +42,12 @@ public class TextReply extends BaseEntity {
 	@Column(columnDefinition = "TEXT")
 	private String textReply;
 
-	public TextReply(Profile profile, Diary diary, String textReply) {
+	private String audio;
+
+	public TextReply(Profile profile, Diary diary, String textReply, String audio) {
 		this.profile = profile;
 		this.diary = diary;
 		this.textReply = textReply;
+		this.audio = audio;
 	}
 }

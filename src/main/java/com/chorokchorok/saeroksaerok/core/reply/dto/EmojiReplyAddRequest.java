@@ -2,9 +2,7 @@ package com.chorokchorok.saeroksaerok.core.reply.dto;
 
 import com.chorokchorok.saeroksaerok.core.reply.domain.Emoji;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

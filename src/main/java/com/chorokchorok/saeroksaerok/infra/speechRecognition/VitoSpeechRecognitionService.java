@@ -17,7 +17,6 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.chorokchorok.saeroksaerok.configuration.vito.VitoProperties;
-import com.chorokchorok.saeroksaerok.core.common.service.SpeechRecognitionService;
 
 import lombok.RequiredArgsConstructor;
 
