@@ -17,6 +17,7 @@ public class EmojiRepliesSearchResponse {
 	private long emojiReplyId;
 	private String author;
 	private Emoji emojiReply;
+	private String profileImageUrl;
 	private LocalDateTime createdAt;
 
 	public static EmojiRepliesSearchResponse of(EmojiReply emojiReply) {
@@ -24,6 +25,7 @@ public class EmojiRepliesSearchResponse {
 			emojiReply.getId(),
 			emojiReply.getProfile().getNickname(),
 			emojiReply.getEmoji(),
+			emojiReply.getProfile().getProfileImage(),
 			emojiReply.getCreatedAt()
 		);
 	}
