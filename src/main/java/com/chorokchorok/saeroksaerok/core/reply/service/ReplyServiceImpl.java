@@ -30,6 +30,7 @@ public class ReplyServiceImpl implements ReplyService {
 	private final DiaryRepository diaryRepository;
 	private final ProfileRepository profileRepository;
 	private final SpeechRecognitionService speechRecognitionService;
+	private final AudioUploader audioUploader;
 
 	@Transactional
 	@Override
@@ -45,8 +46,11 @@ public class ReplyServiceImpl implements ReplyService {
 		Profile profile = profileRepository.findById(profileId)
 			.orElseThrow(() -> new NotFoundException("profile", profileId));
 
+		// save audio file
+		String audioUrl = audioUploader.upload(request.getAudioReply());
+
 		// create textReply
-		TextReply textReply = new TextReply(profile, diary, text);
+		TextReply textReply = new TextReply(profile, diary, text, audioUrl);
 
 		// save textReply
 		TextReply savedTextReply = textReplyRepository.save(textReply);

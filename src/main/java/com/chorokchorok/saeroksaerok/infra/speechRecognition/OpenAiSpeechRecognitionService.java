@@ -1,8 +1,6 @@
 package com.chorokchorok.saeroksaerok.infra.speechRecognition;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpEntity;
@@ -17,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.chorokchorok.saeroksaerok.configuration.dalle.DalleProperties;
 import com.chorokchorok.saeroksaerok.core.common.service.SpeechRecognitionService;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

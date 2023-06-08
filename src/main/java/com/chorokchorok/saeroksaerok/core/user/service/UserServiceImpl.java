@@ -3,6 +3,7 @@ package com.chorokchorok.saeroksaerok.core.user.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.chorokchorok.saeroksaerok.core.profile.domain.Profile;
 import com.chorokchorok.saeroksaerok.core.profile.domain.ProfileRepository;
 import com.chorokchorok.saeroksaerok.core.user.domain.RefreshToken;
 import com.chorokchorok.saeroksaerok.core.user.domain.RefreshTokenRepository;
@@ -75,6 +76,10 @@ public class UserServiceImpl implements UserService {
 		long profileId = profileRepository.findProfileIdByUserId(user.getId())
 			.orElseThrow(() -> new NotFoundException("profile", user.getId()));
 
+		// find profile
+		Profile profile = profileRepository.findById(profileId)
+			.orElseThrow(() -> new NotFoundException("profile", profileId));
+
 		String accessToken = tokenService.createAccessToken(user.getId(), profileId);
 		String refreshToken = tokenService.createRefreshToken();
 
@@ -82,7 +87,7 @@ public class UserServiceImpl implements UserService {
 		// saveRefreshToken(refreshToken, user.getId());
 
 		// create and return response
-		return new SignInResponse(user.getEmail().getValue(), accessToken, refreshToken);
+		return new SignInResponse(user.getEmail().getValue(), accessToken, refreshToken, profile.getProfileImage());
 	}
 
 	private void saveRefreshToken(String refreshTokenStr, long userId) {

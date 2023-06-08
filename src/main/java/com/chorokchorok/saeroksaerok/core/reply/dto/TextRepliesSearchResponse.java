@@ -16,6 +16,7 @@ public class TextRepliesSearchResponse {
 	private long textReplyId;
 	private String author;
 	private String textReply;
+	private String audioUrl;
 	private LocalDateTime createdAt;
 
 	public static TextRepliesSearchResponse of(TextReply textReply) {
@@ -23,6 +24,7 @@ public class TextRepliesSearchResponse {
 			textReply.getId(),
 			textReply.getProfile().getNickname(),
 			textReply.getTextReply(),
+			textReply.getAudio(),
 			textReply.getCreatedAt()
 		);
 	}
