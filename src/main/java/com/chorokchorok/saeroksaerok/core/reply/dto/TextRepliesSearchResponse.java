@@ -17,6 +17,7 @@ public class TextRepliesSearchResponse {
 	private String author;
 	private String textReply;
 	private String audioUrl;
+	private String profileImageUrl;
 	private LocalDateTime createdAt;
 
 	public static TextRepliesSearchResponse of(TextReply textReply) {
@@ -25,6 +26,7 @@ public class TextRepliesSearchResponse {
 			textReply.getProfile().getNickname(),
 			textReply.getTextReply(),
 			textReply.getAudio(),
+			textReply.getProfile().getProfileImage(),
 			textReply.getCreatedAt()
 		);
 	}

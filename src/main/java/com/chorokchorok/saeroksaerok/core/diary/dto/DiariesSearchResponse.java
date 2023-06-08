@@ -18,6 +18,7 @@ public class DiariesSearchResponse {
 	private String keyword;
 	private String textDiary;
 	private String pictureDiary;
+	private String profileImageUrl;
 	private LocalDateTime createdAt;
 
 	public static DiariesSearchResponse of(Diary diary) {
@@ -27,6 +28,7 @@ public class DiariesSearchResponse {
 			diary.getKeyword(),
 			diary.getTextDiary(),
 			diary.getPictureDiary(),
+			diary.getProfile().getProfileImage(),
 			diary.getCreatedAt()
 		);
 	}
